@@ -19,6 +19,10 @@ jobs:
           docker images
       - name: Apply manifest
         run: kubectl apply -f k8s-node-app.yaml
+      - name: Wait for Pod creation
+        run: |
+          kubectl wait --for=condition=available deployment/nodejs-app --timeout=60s
+          kubectl get pods -A
       - name: Test service URLs
         run: |
           minikube service list

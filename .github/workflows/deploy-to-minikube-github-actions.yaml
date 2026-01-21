@@ -23,4 +23,3 @@ jobs:
         run: |
           minikube service list
           minikube service nodejs-app --url
-          kubectl get svc
